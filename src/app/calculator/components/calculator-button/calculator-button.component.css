@@ -3,5 +3,7 @@ button {
 }
 
 .is-command {
-  @apply w-full h-16 outline-none focus:outline-none bg-indigo-700 bg-opacity-10 hover:bg-opacity-20 text-white text-2xl font-light;
+  @apply bg-indigo-700 bg-opacity-20;
 }
+
+

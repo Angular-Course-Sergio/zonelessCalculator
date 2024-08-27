@@ -22,7 +22,12 @@ export class CalculatorButtonComponent {
       typeof value === 'string' ? value === '' : value,
   });
 
-  @HostBinding('class.is-command') get commandStyle() {
-    return this.isCommand();
+  public isDoubleSize = input(false, {
+    transform: (value: boolean | string) =>
+      typeof value === 'string' ? value === '' : value,
+  });
+
+  @HostBinding('class.w-2/4') get doubleSizeStyle() {
+    return this.isDoubleSize();
   }
 }
