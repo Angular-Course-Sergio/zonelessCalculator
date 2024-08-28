@@ -30,4 +30,76 @@ describe('CalculatorService', () => {
     expect(service.subResultText()).toBe('0');
     expect(service.lastOperator()).toBe('+');
   });
+
+  it('should update resultText with number input', () => {
+    service.constructNumber('1');
+    expect(service.resultText()).toBe('1');
+
+    service.constructNumber('2');
+    expect(service.resultText()).toBe('12');
+  });
+
+  it('should handle operators correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('-');
+
+    expect(service.lastOperator()).toBe('-');
+    expect(service.subResultText()).toBe('1');
+    expect(service.resultText()).toBe('0');
+  });
+
+  it('should calculate result correctly for addition', () => {
+    service.constructNumber('1');
+    service.constructNumber('+');
+    service.constructNumber('2');
+    service.constructNumber('=');
+
+    expect(service.resultText()).toBe('3');
+  });
+
+  it('should calculate result correctly for subtraction', () => {
+    service.constructNumber('4');
+    service.constructNumber('-');
+    service.constructNumber('1');
+    service.constructNumber('=');
+
+    expect(service.resultText()).toBe('3');
+  });
+
+  it('should calculate result correctly for multiplication', () => {
+    service.constructNumber('4');
+    service.constructNumber('*');
+    service.constructNumber('2');
+    service.constructNumber('=');
+
+    expect(service.resultText()).toBe('8');
+  });
+
+  it('should calculate result correctly for division', () => {
+    service.constructNumber('4');
+    service.constructNumber('/');
+    service.constructNumber('2');
+    service.constructNumber('=');
+
+    expect(service.resultText()).toBe('2');
+  });
+
+  it('should handle decimal dot correctly', () => {
+    service.constructNumber('1');
+    service.constructNumber('.');
+    service.constructNumber('5');
+
+    expect(service.resultText()).toBe('1.5');
+    service.constructNumber('.');
+    expect(service.resultText()).toBe('1.5');
+  });
+
+  it('should handle decimal dot correctly starting with 0', () => {
+    service.constructNumber('0');
+    service.constructNumber('.');
+    service.constructNumber('.');
+    service.constructNumber('0');
+
+    expect(service.resultText()).toBe('0.0');
+  });
 });

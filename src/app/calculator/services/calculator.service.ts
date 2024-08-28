@@ -118,7 +118,7 @@ export class CalculatorService {
         break;
       case '/':
       case '÷':
-        result = number2 / number1;
+        result = number1 / number2;
         break;
     }
 
