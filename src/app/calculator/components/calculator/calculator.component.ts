@@ -28,12 +28,11 @@ export class CalculatorComponent {
   public lastOperator = computed(() => this.calculatorService.lastOperator());
 
   handleClick(key: string) {
-    console.log({ key });
+    this.calculatorService.constructNumber(key);
   }
 
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyEquivalents: Record<string, string> = {
-      Backspace: 'C',
       Clear: 'C',
       Delete: 'C',
       Enter: '=',
