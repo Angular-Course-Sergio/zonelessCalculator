@@ -57,6 +57,7 @@ export class CalculatorService {
 
     if (this.resultText().length >= 10) {
       console.info('Max length reached');
+      return;
     }
 
     if (value === '.' && !this.resultText().includes('.')) {
