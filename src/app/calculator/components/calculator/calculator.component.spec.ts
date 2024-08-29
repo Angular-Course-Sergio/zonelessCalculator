@@ -57,9 +57,23 @@ describe('CalculatorComponent', () => {
     mockCalculatorService.lastOperator.and.returnValue('*');
     fixture.detectChanges();
 
-    expect(compiled.querySelector('span')?.innerText).toBe('456 *')
+    expect(compiled.querySelector('span')?.innerText).toBe('456 *');
     expect(component.resultText()).toBe('123');
     expect(component.subResultText()).toBe('456');
     expect(component.lastOperator()).toBe('*');
+  });
+
+  it('should have 19 calculator-button components', () => {
+    expect(component.calculatorButtons()).toBeTruthy();
+    expect(component.calculatorButtons().length).toBe(19);
+  });
+
+  it('should have 19 calculator-button with content projection', () => {
+    const buttons = compiled.querySelectorAll('calculator-button');
+    expect(buttons.length).toBe(19);
+    expect(buttons[0].textContent?.trim()).toBe('C');
+    expect(buttons[1].textContent?.trim()).toBe('+/-');
+    expect(buttons[2].textContent?.trim()).toBe('%');
+    expect(buttons[3].textContent?.trim()).toBe('÷');
   });
 });
